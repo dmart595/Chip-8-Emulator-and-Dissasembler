@@ -99,6 +99,10 @@ so we need an instruction every 2 ms because 1/500 = 0.002
 
 
 //i just ran single player pong 10/17... lets go
+next steps:
+
+learn how to git/github this to my account and not just upload files. like use a terminal to push all these files to a repo
+
 
 
 
