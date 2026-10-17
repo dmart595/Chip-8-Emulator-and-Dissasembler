@@ -1,0 +1,13 @@
+# Compiled programs and object files
+*.exe
+*.o
+*.obj
+
+# Debug files
+*.pdb
+
+# CHIP-8 ROMs
+roms/
+
+# Local VS Code settings
+.vscode/

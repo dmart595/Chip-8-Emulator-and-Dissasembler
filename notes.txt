@@ -1,0 +1,104 @@
+/*
+Notes:
+this is for c++.
+A nibble is 4 bits/ a byte is 8 bits.
+A set of instructions comes through with OPCODES. Goal is to 
+understand these opcodes and be able to write a disassembler.
+
+Opcodes are organized by upper nibble. EX: 0NNN < is organized by the 0N
+
+- Make sure to check best methods for C++ not C.
+
+GENERAL NOTES:
+using uint8_t means unsigned 8 bit integer (found in stdint.h)
+also, pc stands for program counter and = the position you want to dissasemble.
+Ex: dissasembleChip8(buffAddress, 0x050) - would mean you want to disassemble at mem address 0x050.
+
+
+LINE BASED NOTES:
+
+10: sets up a non return function using the parameters given which are the program counter and at said addy
+11: sets up a constant pointer to the 8 bit int we are going to read,
+ and equates it to the address provided in parameters at the program counter.
+12: sets up an 8 bit int called firstnib (first half).
+    then sets it up as the first nib in the first half of binary
+    ex : 1010011 -> 00001010
+
+14: the print is broken down into mulipl things but the most important is function
+    ex: %x means hexadecimal print, the digits 02 or 04 inbetween specify min amount of digits to use.
+    remember % addresses the variable or section introduced after comma in same line.
+
+15: switch(firstnib) switches from case to case based on the value of the first nibble
+ not handled yet are placeholders atm. 6 and A are done because 6 and A only have 1 opcode
+ (6xnn and ANNN)
+ ex: case 6 sets the register to the codeRead matched at the first bit.
+ during case 6  the print f uses %-10s which means string (s) of 10 (10) aligned left (-)
+ V%01X is just V with whatever 1 digit hexadecimal
+ ,#$ are part of the print and represent notation
+
+ this is where it clicked: the nibble has 2 bits
+ ex: 62 2A , 62 is the instructions and 2A is the replacement of NN.
+ remember the opcode is 6XNN , X is the register.
+ so codeRead[0]=6x and codeRead[1] =NN or 2A in the ex.
+
+case A:
+    opcode ANNN = meaning it takes I and sets it to address N
+
+CASES: 
+THIS IS WHERE IT CLICKED FOR CASES: masking with 0x0F and codeRead is basically just to get the second
+number. for example if we read the nibble as 12 2A. The 1 is the instruction from opcode. the 2 is the
+register or area we are saving to, and the 2A is what we are storing. 
+Example: check case 7 and run it. 1 means jump, 228 is the NNN or information to store with that jump.
+so i named them all topByte because its the lower half of the top byte. "the first 2 from 12 28"
+
+
+FINISHED ALL CASES 10/9/2026
+FINISHED DISASSEMBLER 10/9/2026
+
+
+MAIN:
+    argv is basically what it looks like in the terminal
+    example .disassembler game.ch8. and using argv[1] finds the game.ch8 part which is the file name
+    argc is the counter for the arguments.
+    file f1 is opened.
+    fseek goes through said file  all he way to the end, the ftells the location of where fseek ended
+    after it tells the location of the end that determines how big a file is. ex f1size = 500.
+    the 2nd fseek sets the fseek to the beginning.
+
+    the while loop  - goes through while pc < fsize + 0x200. this means
+    WHILE the start of the file/rom is less than the predicted file size, keep going and dissasembling.
+    pc+=2 because its chip 8 instructions are 2 bytes long
+
+    Assembler Notes:
+    
+    Subroutine basically means function. So for the chip8 to call Subroutine means to call said 
+    function at said memory and return back to the location
+    Ex: 2NNN means to call subroutine(a function) at NNN.
+
+    Another aspect of this is the stack. the stack works to store addresses so that the program can 
+    return to that code.
+    Brainstorm of case 2NNN:
+    store current memory address in stack. then add 1 to the stack pointer.
+    then setup the program counter at the new address(NNN). because eventually it will use
+    0NNN which is the return to the subroutine.
+
+
+    OPCODE 3xnn: 
+    since this system runs on two byte instructions. pc is +=2 because of that rule. so we 
+    "skip" to the next instruction by setting the new program counter to the next instruction.
+    ex: Pc of 0x200 is now 0x202. the values of those pc's will be different though like
+    3490 to 5645 or something similar.
+
+
+//ROM  DISPLAY TESTS STARTED WORKING 10/17
+
+now to start maximizing efficiency-
+chip8 usually runs at about 500 instructions per second so lets set the cpu to that timing
+in the main function while loops. so 500hz.
+so we need an instruction every 2 ms because 1/500 = 0.002
+
+
+//i just ran single player pong 10/17... lets go
+
+
+
