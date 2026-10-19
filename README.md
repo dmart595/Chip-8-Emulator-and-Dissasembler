@@ -24,13 +24,13 @@ The purposes of this project include:
 4. If you have MSYS2 and other dependencies installed, open the VS Code Terminal.
 
 # Build
-Make sure you are in the chip8 folder directory. If not, then type 'cd chip8' in the terminal and press enter
+Make sure you are in the chip8 folder directory. If not, then type `cd chip8` in the terminal and press enter
 
 Compile the emulator with: 
 
-'C:\msys64\ucrt64\bin\g++.exe emulator.cpp cpu.cpp -o chip8.exe -IC:\msys64\ucrt64\include\SDL2 -LC:\msys64\ucrt64\lib -DSDL_MAIN_HANDLED -lSDL2'
+`C:\msys64\ucrt64\bin\g++.exe emulator.cpp cpu.cpp -o chip8.exe -IC:\msys64\ucrt64\include\SDL2 -LC:\msys64\ucrt64\lib -DSDL_MAIN_HANDLED -lSDL2`
 
-Then, run ' .\chip8.exe "roms/IBM Logo.ch8" ' in the terminal and replace the .ch8 name with the rom file name provided. I used the IBM Logo rom for example.
+Then, run ` .\chip8.exe "roms/IBM Logo.ch8" ` in the terminal and replace the .ch8 name with the rom file name provided. I used the IBM Logo rom for example.
 
 The keypad is a 4 by 4 key pad from 1-4 all the way down to z-v.
 
@@ -39,9 +39,9 @@ Similar steps as the emulator.
 
 Compile with: 
 
-'C:\msys64\ucrt64\bin\g++.exe disassembler.cpp -o disassembler.exe'
+`C:\msys64\ucrt64\bin\g++.exe disassembler.cpp -o disassembler.exe`
 
-Then run with: '.\disassembler.exe "roms/IBM Logo.ch8"' with your provided file name again.
+Then run with: `.\disassembler.exe "roms/IBM Logo.ch8"` with your provided file name again.
 
 # Notes
 You need to provide your own ROM to run this emulator and dissasembler
