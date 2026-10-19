@@ -44,5 +44,14 @@ Compile with:
 Then run with: `.\disassembler.exe "roms/IBM Logo.ch8"` with your provided file name again.
 
 # Notes
-You need to provide your own ROM to run this emulator and dissasembler
+You need to provide your own ROM to run this emulator and dissasembler.
+
+There are a lot of comments in the source code. This was to help my learning process and understand what it is I am programming. The comments also serve to decode some of the more confusing operations done by the system.
+
+# Valuable Resources
+If you want to build your own or find similar resources look here:
+- http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
+- https://en.wikipedia.org/wiki/CHIP-8
+- https://multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/
+- https://github.com/Timendus/chip8-test-suite
 
