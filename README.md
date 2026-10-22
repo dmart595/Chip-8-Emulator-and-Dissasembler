@@ -1,4 +1,4 @@
-# Chip-8-Emulator-and-Dissasembler
+# Chip-8-Emulator-and-Disassembler
 Contains a Chip-8 dissasembler for .ch8 files and and a basic emulator. Both written in C++.
 
 # Purpose
